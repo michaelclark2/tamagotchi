@@ -1,3 +1,7 @@
 import '../styles/index.scss';
 
-console.error('aye');
+const init = () => {
+
+};
+
+init();
