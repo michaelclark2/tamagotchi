@@ -1,3 +1,14 @@
-body {
-  background-color: green;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#app {
+  display: flex;
+  flex-flow: row wrap;
+  height: 100vh;
+  .quad {
+    flex: 1 1 50%;
+  }
 }
