@@ -1,0 +1,15 @@
+#pet {
+  position: absolute;
+  margin: 0 auto;
+  top: 25vh;
+  right: 0;
+  left: 0;
+  height: 300px;
+  width: 300px;
+  #pet-img {
+    height: 100%;
+    width: 100%;
+    background-image: url('./pet_sprite.png');
+    background-repeat: no-repeat;
+  }
+}
