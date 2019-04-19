@@ -16,6 +16,8 @@ class Pet {
     utils.printToDom('pet', '<div id="pet-img"></div>');
 
     this.el = document.getElementById('pet-img');
+    const healthBar = document.getElementById('pet-health');
+    healthBar.style.width = `${this.health}%`;
 
     let tick = 0;
 

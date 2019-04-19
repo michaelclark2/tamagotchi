@@ -1,0 +1,21 @@
+#progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  .pet-name {
+    text-align: center;
+    font-size: 3em;
+    margin: .5em;
+  }
+  .pet-health-bar {
+    width: 25%;
+    height: 10px;
+    margin: 0 auto;
+    border: 1px solid black;
+  }
+  #pet-health {
+    height: 100%;
+    background-color: green;
+  }
+}
