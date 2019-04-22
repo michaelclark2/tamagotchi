@@ -10,7 +10,7 @@ class Progress {
     const domString = `
       <h2 class="pet-name">${this.pet.name}</h2>
       <div class="pet-health-bar">
-        <div id="pet-health"></div>
+        <div id="pet-health" style="width: ${this.pet.health}%"></div>
       </div>
     `;
     utils.printToDom('progress', domString);

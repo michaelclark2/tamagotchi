@@ -1,0 +1,17 @@
+#eat {
+  background-color: lightblue;
+
+  #eat-menu {
+    width: 50%;
+  }
+
+  .fullness-bar {
+    width: 50%;
+    height: 1em;
+    border: 1px solid black;
+  }
+  #pet-fullness {
+    background-color: green;
+    height: 100%;
+  }
+}
