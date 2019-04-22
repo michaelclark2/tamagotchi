@@ -29,9 +29,23 @@ class Pet {
     this.setBars();
   }
 
+  play(activity) {
+    // Too much playing is boring
+    if (activity.fun + this.fun > 100) {
+      this.fun -= 20;
+      this.energy -= activity.energy;
+      this.setBars();
+      return;
+    }
+    this.fun += activity.fun;
+    this.energy -= activity.energy;
+    this.setBars();
+  }
+
   setBars() {
     // update the status bars
     document.getElementById('pet-fullness').style.width = `${this.fullness}%`;
+    document.getElementById('pet-fun').style.width = `${this.fun}%`;
     this.progress.render();
   }
 
