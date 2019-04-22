@@ -37,8 +37,7 @@ const foods = [
 
 
 class EatQuad {
-  constructor(pet) {
-    this.pet = pet;
+  constructor() {
     this.el = document.getElementById('eat');
   }
 
@@ -59,7 +58,7 @@ class EatQuad {
     `;
   }
 
-  attachEvents() {
+  attachEvents(pet) {
     this.el.addEventListener('click', (e) => {
       if (e.target.id === 'eat-menu') {
         e.target.parentNode.nextSibling.classList.remove('hide');
@@ -68,16 +67,13 @@ class EatQuad {
     [...document.getElementsByClassName('food-btn')].forEach((btn) => {
       btn.addEventListener('click', (e) => {
         const food = foods.find(f => f.id === parseInt(e.target.id, 10));
-        this.pet.eat(food);
-        this.render();
+        pet.eat(food);
       });
     });
   }
 
   render() {
     this.el.innerHTML = this.domString();
-    document.getElementById('pet-fullness').style.width = `${this.pet.fullness}%`;
-    this.attachEvents();
   }
 }
 
