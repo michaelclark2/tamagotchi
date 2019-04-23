@@ -54,6 +54,7 @@ class PlayQuad {
 
     [...document.getElementsByClassName('play-btn')].forEach((btn) => {
       btn.addEventListener('click', (e) => {
+        document.querySelector('#play .buttons').classList.add('hide');
         const activity = activities.find(a => a.id === parseInt(e.target.id, 10));
         pet.play(activity);
       });

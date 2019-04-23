@@ -42,10 +42,31 @@ class Pet {
     this.setBars();
   }
 
+  sleep(duration) {
+    let seconds = 0;
+
+    const timer = setInterval(() => {
+      if (seconds === duration) {
+        clearInterval(timer);
+        return;
+      }
+      if (this.energy + 10 >= 100) {
+        this.energy = 100;
+        clearInterval(timer);
+        this.setBars();
+        return;
+      }
+      this.energy += 10;
+      seconds += 1;
+      this.setBars();
+    }, 1000);
+  }
+
   setBars() {
     // update the status bars
     document.getElementById('pet-fullness').style.width = `${this.fullness}%`;
     document.getElementById('pet-fun').style.width = `${this.fun}%`;
+    document.getElementById('pet-energy').style.width = `${this.energy}%`;
     this.progress.render();
   }
 
