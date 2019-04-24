@@ -44,16 +44,25 @@ class Pet {
 
   sleep(duration) {
     let seconds = 0;
-
+    const otherActions = [...document.querySelectorAll('#app .buttons')].reduce((btns, x) => [...btns, ...x.children], []);
     const timer = setInterval(() => {
+      otherActions.forEach((act) => {
+        act.setAttribute('disabled', 'disabled');
+      });
       if (seconds === duration) {
         clearInterval(timer);
+        otherActions.forEach((act) => {
+          act.removeAttribute('disabled');
+        });
         return;
       }
       if (this.energy + 10 >= 100) {
         this.energy = 100;
         clearInterval(timer);
         this.setBars();
+        otherActions.forEach((act) => {
+          act.removeAttribute('disabled');
+        });
         return;
       }
       this.energy += 10;
