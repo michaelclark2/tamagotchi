@@ -44,18 +44,18 @@ class Pet {
 
     const otherActions = [...document.querySelectorAll('#app .buttons')].reduce((btns, x) => [...btns, ...x.children], []);
 
-    otherActions.forEach((act) => {
-      act.setAttribute('disabled', 'disabled');
-    });
+    if (!this.isAsleep) {
+      otherActions.forEach((act) => {
+        act.setAttribute('disabled', 'disabled');
+      });
+      this.isAsleep = true;
+    }
 
     const timer = setInterval(() => {
-      if (!this.isAsleep) {
-        this.isAsleep = true;
-      }
       if (seconds === duration) {
         this.isAsleep = false;
       }
-      if (this.energy + 10 >= 100) {
+      if (this.energy + 10 >= 100 && this.isAsleep) {
         this.energy = 100;
         this.isAsleep = false;
       }
