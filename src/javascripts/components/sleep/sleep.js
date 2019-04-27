@@ -7,9 +7,7 @@ class SleepQuad {
 
   printSleep() {
     return Array(5).fill(0).map((x, i) => `
-      <div class="sleep-btn">
-        <h5 id="${i + 1}sleep">Sleep for ${i + 1} minutes</h5>
-      </div>
+      <button class="sleep-btn" id="${i + 1}sleep">Sleep for ${i + 1} minutes</button>
     `).join('');
   }
 
