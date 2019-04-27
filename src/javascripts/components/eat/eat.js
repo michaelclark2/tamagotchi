@@ -43,9 +43,8 @@ class EatQuad {
 
   printFood() {
     return foods.map(food => `
-      <div class="food-btn">
-        <h5 id="${food.id}food">${food.name}</h5>
-      </div>`).join('');
+        <button class="food-btn" id="${food.id}food">${food.name}</button>
+      `).join('');
   }
 
   domString() {
@@ -68,6 +67,7 @@ class EatQuad {
       btn.addEventListener('click', (e) => {
         const food = foods.find(f => f.id === parseInt(e.target.id, 10));
         pet.eat(food);
+        pet.setBars();
       });
     });
   }

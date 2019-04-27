@@ -10,6 +10,7 @@ class Pet {
     this.fullness = 100;
     this.fun = 100;
     this.progress = new Progress(this);
+    this.isAsleep = false;
   }
 
   get health() { return (this.strength + this.fullness + this.energy + this.fun) / 4; }
@@ -19,14 +20,12 @@ class Pet {
     if (food.fullness + this.fullness > 100) {
       this.fullness = 100;
       this.fun -= 20;
-      this.setBars();
       return;
     }
     this.fullness += food.fullness;
     this.strength += food.strength;
     this.energy += food.energy;
     this.fun += food.fun;
-    this.setBars();
   }
 
   play(activity) {
@@ -34,18 +33,51 @@ class Pet {
     if (activity.fun + this.fun > 100) {
       this.fun -= 20;
       this.energy -= activity.energy;
-      this.setBars();
       return;
     }
     this.fun += activity.fun;
     this.energy -= activity.energy;
-    this.setBars();
+  }
+
+  sleep(duration) {
+    let seconds = 0;
+
+    const otherActions = [...document.querySelectorAll('#app .buttons')].reduce((btns, x) => [...btns, ...x.children], []);
+
+    if (!this.isAsleep) {
+      otherActions.forEach((act) => {
+        act.setAttribute('disabled', 'disabled');
+      });
+      this.isAsleep = true;
+    }
+
+    const timer = setInterval(() => {
+      if (seconds === duration) {
+        this.isAsleep = false;
+      }
+      if (this.energy + 10 >= 100 && this.isAsleep) {
+        this.energy = 100;
+        this.isAsleep = false;
+      }
+      if (!this.isAsleep) {
+        clearInterval(timer);
+        otherActions.forEach((act) => {
+          act.removeAttribute('disabled');
+        });
+        this.setBars();
+        return;
+      }
+      this.energy += 10;
+      seconds += 1;
+      this.setBars();
+    }, 1000);
   }
 
   setBars() {
     // update the status bars
     document.getElementById('pet-fullness').style.width = `${this.fullness}%`;
     document.getElementById('pet-fun').style.width = `${this.fun}%`;
+    document.getElementById('pet-energy').style.width = `${this.energy}%`;
     this.progress.render();
   }
 

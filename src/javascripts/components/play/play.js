@@ -29,9 +29,7 @@ class PlayQuad {
 
   printActivities() {
     return activities.map(act => `
-    <div class="play-btn">
-      <h5 id="${act.id}play">${act.name}</h5>
-    </div>
+      <button class="play-btn" id="${act.id}play">${act.name}</button>
     `).join('');
   }
 
@@ -54,8 +52,10 @@ class PlayQuad {
 
     [...document.getElementsByClassName('play-btn')].forEach((btn) => {
       btn.addEventListener('click', (e) => {
+        document.querySelector('#play .buttons').classList.add('hide');
         const activity = activities.find(a => a.id === parseInt(e.target.id, 10));
         pet.play(activity);
+        pet.setBars();
       });
     });
   }
